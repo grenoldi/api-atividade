@@ -10,6 +10,24 @@ base = declarative_base()
 base.query = db_session.query_property()
 
 
+class Users(base):
+    __tablename__ = 'users'
+    id = Column(Integer, primary_key=True)
+    login = Column(String, unique=True)
+    password = Column(String(30))
+
+    def __repr__(self):
+        return '<Usuario {}>'.format(self.login)
+
+    def save(self):
+        db_session.add(self)
+        db_session.commit()
+
+    def delete(self):
+        db_session.add(self)
+        db_session.commit()
+
+
 class Pessoas(base):
     __tablename__ = 'pessoas'
     id = Column(Integer, primary_key=True)

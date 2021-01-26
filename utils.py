@@ -1,4 +1,4 @@
-from models import Pessoas
+from models import Pessoas, Users
 
 
 def insere_pessoas():
@@ -25,6 +25,18 @@ def excluir_pessoa():
     pessoa.delete()
 
 
+def insert_user(login, password):
+    user = Users(login=login, password=password)
+    user.save()
+
+
+def list_all_users():
+    users = Users.query.all()
+    print(users)
+
+
 if __name__ == '__main__':
-    insere_pessoas()
-    consulta_pessoas()
+    insert_user('bob', '1234')
+    list_all_users()
+    insert_user('renoldi', '1234')
+    list_all_users()
